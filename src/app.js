@@ -22,8 +22,8 @@ function App() {
     const fetchTodayNews = async () => {
       setIsFetching(true)
       const headlines = await api.get(`/top-headlines?country=us&category=${selectedCategory}`)
-      setIsFetching(false)
       setArticles(headlines.data.articles)
+      setIsFetching(false)
     }
 
     fetchTodayNews()
@@ -52,20 +52,22 @@ function App() {
             </Col>
           </Row>
           <Row>
-            {articles.map((article, index) => (
-              <Col key={article.url || index} sm={4} md={2}>
-                {article.url && !isFetching ? (
-                  <Article
-                    img={article.urlToImage}
-                    title={article.title}
-                    author={article.author}
-                    content={article.content}
-                  />
-                ) : (
-                  <ArticlePlaceHolder />
-                )}
-              </Col>
-            ))}
+            {articles.map((article, index) => {
+              return (
+                <Col key={article.url || index} sm={4} md={2}>
+                  {article.url && !isFetching ? (
+                    <Article
+                      img={article.urlToImage}
+                      title={article.title}
+                      author={article.author}
+                      content={article.content}
+                    />
+                  ) : (
+                    <ArticlePlaceHolder />
+                  )}
+                </Col>
+              )
+            })}
           </Row>
           <Row>
             <Col>

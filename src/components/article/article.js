@@ -30,6 +30,7 @@ const Container = styled.article`
 const Title = styled.h1`
   padding-top: 13px;
 `
+
 const Image = styled.img`
   display: ${props => (props.isLoaded ? 'block' : 'none')};
   max-width: 100%;
