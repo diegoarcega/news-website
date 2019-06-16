@@ -8,13 +8,13 @@ export default function Pill({ children, ...rest }) {
 
 const Container = styled.span`
   display: inline-flex;
-  background-color: ${props => props.theme.grey};
+  background-color: ${props => (props.isSelected ? darken(0.1, props.theme.grey) : props.theme.grey)};
   padding: 10px 25px;
   border-radius: 20px;
   transition: background-color ease 0.7;
 
   &:hover {
     cursor: pointer;
-    background-color: ${props => darken(0.05, props.theme.grey)};
+    background-color: ${props => darken(0.1, props.theme.grey)};
   }
 `
