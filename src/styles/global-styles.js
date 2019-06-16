@@ -10,13 +10,17 @@ export default createGlobalStyle`
   html, body, #root { height: 100%; }
 
   body {
-    background: linear-gradient(to left top, ${props => props.theme.backgroundColor} 10%, ${props =>
-  props.theme.foregroundColor} 100%);
+    color: ${props => props.theme.primary};
     font-weight: 100;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Quicksand", "Roboto", "Oxygen",
+    background-attachment: fixed;
+    font-family: "Segoe UI", "Quicksand", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    font-weight: 100;
   }
 `

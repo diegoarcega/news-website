@@ -1,4 +1,5 @@
 export default {
-  backgroundColor: '#0A090E',
-  foregroundColor: '#24244c',
+  primary: '#0A090E',
+  secondary: '#24244c',
+  grey: '#ebebeb',
 }

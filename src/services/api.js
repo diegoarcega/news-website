@@ -5,8 +5,8 @@ export const api = axios.create({
   baseURL: config.apiBaseUrl,
 })
 
-api.interceptors.request.use(config => {
-  const newConfig = config
+api.interceptors.request.use(request => {
+  const newConfig = request
   if (!newConfig.headers.authorization) {
     newConfig.headers.authorization = `Bearer ${config.newsApiKey}`
   }
