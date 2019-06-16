@@ -23,4 +23,8 @@ export default createGlobalStyle`
   h1 {
     font-weight: 100;
   }
+
+  footer {
+    margin-top: 50px;
+  }
 `

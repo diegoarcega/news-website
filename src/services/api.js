@@ -12,3 +12,19 @@ api.interceptors.request.use(request => {
   }
   return newConfig
 })
+
+api.interceptors.response.use(
+  response => {
+    localStorage.setItem('lastApiResponse', JSON.stringify(response))
+    return response
+  },
+  error => {
+    if (error.message === 'Network Error') {
+      const storedApiResponse = localStorage.getItem('lastApiResponse')
+      if (storedApiResponse) {
+        return Promise.resolve(JSON.parse(storedApiResponse))
+      }
+    }
+    return Promise.reject(error)
+  }
+)
