@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the pill 1`] = `
+<DocumentFragment>
+  .c0 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  background-color: #fff;
+  padding: 10px 25px;
+  border-radius: 20px;
+  -webkit-transition: background-color ease-in-out 0.2s;
+  transition: background-color ease-in-out 0.2s;
+}
+
+.c0:hover {
+  cursor: pointer;
+}
+
+<span
+    class="c0"
+  >
+    I'm a text
+  </span>
+</DocumentFragment>
+`;

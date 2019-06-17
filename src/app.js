@@ -30,7 +30,7 @@ function App() {
 
       try {
         const headlines = await api.get(`/top-headlines?country=us&category=${selectedCategory}`)
-        setArticles(headlines.data.articles)
+        setArticles(headlines.data.articles.filter(article => !!article.urlToImage))
         setIsFetching(false)
       } catch (error) {
         setIsFetching(false)
@@ -58,6 +58,7 @@ function App() {
                   <StyledPill
                     isSelected={category === selectedCategory}
                     key={category}
+                    data-testid={category}
                     onClick={() => setSelectedCategory(category)}
                   >
                     {category}
@@ -77,9 +78,10 @@ function App() {
                       title={article.title}
                       author={article.author}
                       content={article.content}
+                      data-testid="article"
                     />
                   ) : (
-                    <ArticlePlaceHolder />
+                    <ArticlePlaceHolder data-testid="article-placeholder" />
                   )}
                 </Col>
               )

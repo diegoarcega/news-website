@@ -1,0 +1,147 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders the Article with ImagePlaceHolder: with-loading 1`] = `
+<DocumentFragment>
+  .c0 {
+  padding: 10px 0 10px 0;
+  border-radius: 4px;
+}
+
+.c0:hover {
+  cursor: pointer;
+}
+
+.c2 {
+  padding-top: 13px;
+}
+
+.c1 {
+  display: none;
+  max-width: 100%;
+  max-height: 200px;
+  height: 100%;
+  border-radius: 4px;
+}
+
+.c3 {
+  padding-top: 10px;
+}
+
+.c4 {
+  padding-top: 10px;
+}
+
+@media only screen and (min-width:1rem) {
+  .c1 {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width:48rem) {
+  .c1 {
+    width: initial;
+  }
+}
+
+<article
+    class="c0"
+  >
+    <img
+      class="c1"
+      data-testid="article-image"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
+    />
+    <svg
+      aria-labelledby="Loading interface..."
+      data-testid="image-placeholder"
+      preserveAspectRatio="none"
+      role="img"
+      viewBox="0 0 330 197"
+    >
+      <title>
+        Loading interface...
+      </title>
+      <rect
+        clip-path="url(#i)"
+        height="197"
+        style="fill: url(#i);"
+        width="330"
+        x="0"
+        y="0"
+      />
+      <defs>
+        <clippath
+          id="i"
+        >
+          <rect
+            height="200"
+            rx="5"
+            ry="5"
+            width="330"
+            x="0"
+            y="0"
+          />
+        </clippath>
+        <lineargradient
+          id="i"
+        >
+          <stop
+            offset="0%"
+            stop-color="#f0f0f0"
+            stop-opacity="1"
+          >
+            <animate
+              attributeName="offset"
+              dur="1s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="-2; -2; 1"
+            />
+          </stop>
+          <stop
+            offset="50%"
+            stop-color="#e0e0e0"
+            stop-opacity="1"
+          >
+            <animate
+              attributeName="offset"
+              dur="1s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="-1; -1; 2"
+            />
+          </stop>
+          <stop
+            offset="100%"
+            stop-color="#f0f0f0"
+            stop-opacity="1"
+          >
+            <animate
+              attributeName="offset"
+              dur="1s"
+              keyTimes="0; 0.25; 1"
+              repeatCount="indefinite"
+              values="0; 0; 3"
+            />
+          </stop>
+        </lineargradient>
+      </defs>
+    </svg>
+    <h1
+      class="c2"
+    >
+      Article
+    </h1>
+    <small
+      class="c3"
+    >
+      Diego Arcega
+    </small>
+    <p
+      class="c4"
+    >
+      This article is informative
+    </p>
+  </article>
+</DocumentFragment>
+`;

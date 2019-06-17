@@ -1,22 +1,31 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { config } from 'react-awesome-styled-grid'
 import { ImagePlaceHolder } from '../article-placeholder/article-placeholder'
 
-export default function Article({ title, img, content, author }) {
+export default function Article({ title, img, content, author, ...rest }) {
   const [hasImageLoaded, setHasImageLoaded] = useState(false)
   const handleImageLoaded = () => {
     setHasImageLoaded(true)
   }
 
   return (
-    <Container>
-      <Image src={img} onLoad={handleImageLoaded} isLoaded={hasImageLoaded} />
-      {!hasImageLoaded && <ImagePlaceHolder />}
+    <Container {...rest}>
+      <Image src={img} onLoad={handleImageLoaded} isLoaded={hasImageLoaded} data-testid="article-image" />
+      {!hasImageLoaded && <ImagePlaceHolder data-testid="image-placeholder" />}
       <Title>{title}</Title>
       <Author>{author}</Author>
       <Content>{content}</Content>
     </Container>
   )
+}
+
+Article.propTypes = {
+  title: PropTypes.string,
+  img: PropTypes.string,
+  content: PropTypes.string,
+  author: PropTypes.string,
 }
 
 const Container = styled.article`
@@ -27,6 +36,7 @@ const Container = styled.article`
     cursor: pointer;
   }
 `
+
 const Title = styled.h1`
   padding-top: 13px;
 `
@@ -37,6 +47,14 @@ const Image = styled.img`
   max-height: 200px;
   height: 100%;
   border-radius: 4px;
+
+  ${props => config(props).media['xs']`
+    width: 100%;
+  `}
+
+  ${props => config(props).media['sm']`
+    width: initial;
+  `}
 `
 const Author = styled.small`
   padding-top: 10px;
