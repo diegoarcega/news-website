@@ -28,3 +28,11 @@ export const TopBar = styled(animated.div)`
   height: 10px;
   width: 100%;
 `
+
+export const OfflineMessage = styled(animated.div)`
+  position: fixed;
+  background-color: #ff5722;
+  padding: 15px 25px;
+  text-align: center;
+  width: 100%;
+`

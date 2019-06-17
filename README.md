@@ -1,6 +1,4 @@
-[Live Demo](https://news-website.surge.sh/)
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Live Demo](https://news-website.surge.sh/) (offline message is only displayed on this env, localhost:5000 does not display the message to the user)
 
 ## Run the App
 

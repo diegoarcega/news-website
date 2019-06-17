@@ -15,12 +15,14 @@ api.interceptors.request.use(request => {
 
 api.interceptors.response.use(
   response => {
-    localStorage.setItem('lastApiResponse', JSON.stringify(response))
+    const category = getCategory(response.config.url)
+    localStorage.setItem(`${category}-response`, JSON.stringify(response))
     return response
   },
   error => {
     if (error.message === 'Network Error') {
-      const storedApiResponse = localStorage.getItem('lastApiResponse')
+      const category = getCategory(error.config.url)
+      const storedApiResponse = localStorage.getItem(`${category}-response`)
       if (storedApiResponse) {
         return Promise.resolve(JSON.parse(storedApiResponse))
       }
@@ -28,3 +30,7 @@ api.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+function getCategory(requestURL = '') {
+  return requestURL.substr(57)
+}

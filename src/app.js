@@ -4,7 +4,7 @@ import { useSpring, config } from 'react-spring'
 import { Article } from './components/article'
 import ArticlePlaceHolder from './components/article-placeholder/article-placeholder'
 import { api } from './services/api'
-import { AppContainer, Header, StyledPill, AllCategories, TopBar } from './app.styles'
+import { AppContainer, Header, StyledPill, AllCategories, TopBar, OfflineMessage } from './app.styles'
 import categories from './categories.json'
 
 function App() {
@@ -18,12 +18,23 @@ function App() {
     to: { background: !selectedCategory ? '#fff' : colors[selectedCategory] },
   })
 
+  const offlineAnimation = useSpring({
+    config: config.wobbly,
+    from: { bottom: '-20px' },
+    to: { bottom: '20px' },
+  })
+
   useEffect(() => {
     const fetchTodayNews = async () => {
       setIsFetching(true)
-      const headlines = await api.get(`/top-headlines?country=us&category=${selectedCategory}`)
-      setArticles(headlines.data.articles)
-      setIsFetching(false)
+
+      try {
+        const headlines = await api.get(`/top-headlines?country=us&category=${selectedCategory}`)
+        setArticles(headlines.data.articles)
+        setIsFetching(false)
+      } catch (error) {
+        setIsFetching(false)
+      }
     }
 
     fetchTodayNews()
@@ -32,6 +43,11 @@ function App() {
   return (
     <div>
       <TopBar style={topAnimation} />
+      {!navigator.onLine && (
+        <OfflineMessage style={offlineAnimation}>
+          You are offline, some sections may not be acessible while you aren't online
+        </OfflineMessage>
+      )}
       <Container>
         <AppContainer>
           <Row>
