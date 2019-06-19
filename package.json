@@ -34,12 +34,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prepush": "CI=true npm test"
+    "eject": "react-scripts eject"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged",
+      "pre-push": "CI=true npm test"
     }
   },
   "lint-staged": {

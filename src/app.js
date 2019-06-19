@@ -11,6 +11,7 @@ function App() {
   const [articles, setArticles] = useState(Array(20).fill({}))
   const [isFetching, setIsFetching] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('')
+  const [isOfflineError, setIsOfflineError] = useState(false)
 
   const topAnimation = useSpring({
     config: config.wobbly,
@@ -32,8 +33,9 @@ function App() {
         const headlines = await api.get(`/top-headlines?country=us&category=${selectedCategory}`)
         setArticles(headlines.data.articles.filter(article => !!article.urlToImage))
         setIsFetching(false)
+        setIsOfflineError(false)
       } catch (error) {
-        setIsFetching(false)
+        setIsOfflineError(true)
       }
     }
 
@@ -43,11 +45,7 @@ function App() {
   return (
     <div>
       <TopBar style={topAnimation} />
-      {!navigator.onLine && (
-        <OfflineMessage style={offlineAnimation}>
-          You are offline, some sections may not be acessible while you aren't online
-        </OfflineMessage>
-      )}
+      {!navigator.onLine && <OfflineMessage style={offlineAnimation}>{offlineErrorMessage}</OfflineMessage>}
       <Container>
         <AppContainer>
           <Row>
@@ -69,23 +67,27 @@ function App() {
             </Col>
           </Row>
           <Row>
-            {articles.map((article, index) => {
-              return (
-                <Col key={article.url || index} sm={4} md={2}>
-                  {article.url && !isFetching ? (
-                    <Article
-                      img={article.urlToImage}
-                      title={article.title}
-                      author={article.author}
-                      content={article.content}
-                      data-testid="article"
-                    />
-                  ) : (
-                    <ArticlePlaceHolder data-testid="article-placeholder" />
-                  )}
-                </Col>
-              )
-            })}
+            {isOfflineError ? (
+              <h1>{offlineErrorMessage}</h1>
+            ) : (
+              articles.map((article, index) => {
+                return (
+                  <Col key={article.url || index} sm={4} md={2}>
+                    {article.url && !isFetching ? (
+                      <Article
+                        img={article.urlToImage}
+                        title={article.title}
+                        author={article.author}
+                        content={article.content}
+                        data-testid="article"
+                      />
+                    ) : (
+                      <ArticlePlaceHolder data-testid="article-placeholder" />
+                    )}
+                  </Col>
+                )
+              })
+            )}
           </Row>
           <Row>
             <Col>
@@ -108,5 +110,7 @@ const colors = {
   [categories[4]]: '#ED553B',
   [categories[5]]: '#ebebeb',
 }
+
+const offlineErrorMessage = "You are offline, you won't be able to view new content"
 
 export default App
